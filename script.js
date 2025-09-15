@@ -33,48 +33,47 @@ function playGame() {
     function playRound() {
         let humanChoice = getHumanChoice();
         let computerChoice = getComputerChoice();
-        let message = `${humanChoice.toUpperCase()} VS. ${computerChoice.toUpperCase()}? `;
+        let roundMessage = `${humanChoice.toUpperCase()} VS. ${computerChoice.toUpperCase()}? `;
+        let win;
 
         if (humanChoice == computerChoice) {
-            message += "IT'S A TIE!"
-        } else if (humanChoice == "rock") {
-            if (computerChoice == "paper") {
-                message += "YOU LOSE!";
-                computerScore++;
-            } else if (computerChoice == "scissors") {
-                message += "YOU WIN!";
-                humanScore++;
-            }
-        } else if (humanChoice == "paper") {
-            if (computerChoice == "scissors") {
-                message += "YOU LOSE!";
-                computerScore++;
-            } else if (computerChoice == "rock") {
-                message += "YOU WIN!";
-                humanScore++;
-            }
+            roundMessage += "IT'S A TIE!"
         } else {
-            if (computerChoice == "rock") {
-                message += "YOU LOSE!";
+            switch (humanChoice) {
+                case "rock":
+                    win = "paper";
+                    break;
+                case "paper":
+                    win = "scissors";
+                    break;
+                case "scissors":
+                    win = "rock";
+                    break;
+            }
+
+            if (computerChoice == win) {
+                roundMessage += "YOU LOSE!";
                 computerScore++;
-            } else if (computerChoice == "paper") {
-                message += "YOU WIN!";
+            } else {
+                roundMessage += "YOU WIN!";
                 humanScore++;
             }
         }
 
-        console.log(message);
+        console.log(roundMessage);
     }
 
     for (let i = 0; i < 5; i++) {
         playRound();
     }
 
+    let endMessage = `PLAYER: ${humanScore} PTS. CPU: ${computerScore} PTS.`;
+
     if (humanScore == computerScore) {
-        console.log(`PLAYER: ${humanScore} PTS. CPU: ${computerScore} PTS. IT'S A TIE!`)
+        console.log(endMessage += ` IT'S A TIE!`);
     } else if (humanScore > computerScore) {
-        console.log(`PLAYER: ${humanScore} PTS. CPU: ${computerScore} PTS. YOU WIN!`);
+        console.log(endMessage += ` YOU WIN!`);
     } else {
-        console.log(`PLAYER: ${humanScore} PTS. CPU: ${computerScore} PTS. YOU LOSE!`);
+        console.log(endMessage += ` YOU LOSE!`);
     }
 }
