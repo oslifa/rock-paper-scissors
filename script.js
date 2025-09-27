@@ -11,61 +11,45 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let choice = prompt('Type "rock", "paper" or "scissors" to make your choice.').toLowerCase();
-    
-    switch(choice) {
-        case "rock":
-            return "rock";
-        
-        case "paper":
-            return "paper";
-        
-        case "scissors":
-             return "scissors";
-    }
-}
-
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
-    function playRound() {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        let roundMessage = `${humanChoice.toUpperCase()} VS. ${computerChoice.toUpperCase()}? `;
-        let win;
+    // function playRound(humanChoice) {
+    //     let computerChoice = getComputerChoice();
+    //     let roundMessage = `${humanChoice.toUpperCase()} VS. ${computerChoice.toUpperCase()}? `;
+    //     let win;
 
-        if (humanChoice == computerChoice) {
-            roundMessage += "IT'S A TIE!"
-        } else {
-            switch (humanChoice) {
-                case "rock":
-                    win = "paper";
-                    break;
-                case "paper":
-                    win = "scissors";
-                    break;
-                case "scissors":
-                    win = "rock";
-                    break;
-            }
+    //     if (humanChoice == computerChoice) {
+    //         roundMessage += "IT'S A TIE!"
+    //     } else {
+    //         switch (humanChoice) {
+    //             case "rock":
+    //                 win = "paper";
+    //                 break;
+    //             case "paper":
+    //                 win = "scissors";
+    //                 break;
+    //             case "scissors":
+    //                 win = "rock";
+    //                 break;
+    //         }
 
-            if (computerChoice == win) {
-                roundMessage += "YOU LOSE!";
-                computerScore++;
-            } else {
-                roundMessage += "YOU WIN!";
-                humanScore++;
-            }
-        }
+    //         if (computerChoice == win) {
+    //             roundMessage += "YOU LOSE!";
+    //             computerScore++;
+    //         } else {
+    //             roundMessage += "YOU WIN!";
+    //             humanScore++;
+    //         }
+    //     }
 
-        console.log(roundMessage);
-    }
+    //     console.log(roundMessage);
+    // }
 
-    for (let i = 0; i < 5; i++) {
-        playRound();
-    }
+    // for (let i = 0; i < 5; i++) {
+    //     playRound();
+    // }
 
     let endMessage = `PLAYER: ${humanScore} PTS. CPU: ${computerScore} PTS.`;
 
@@ -77,3 +61,40 @@ function playGame() {
         console.log(endMessage += ` YOU LOSE!`);
     }
 }
+
+function playRound(humanChoice) {
+    let computerChoice = getComputerChoice();
+    let roundMessage = `${humanChoice.toUpperCase()} VS. ${computerChoice.toUpperCase()}: `;
+    let win;
+
+    if (humanChoice == computerChoice) {
+        roundMessage += "IT'S A TIE!"
+    } else {
+        switch (humanChoice) {
+            case "rock":
+                win = "paper";
+                break;
+            case "paper":
+                win = "scissors";
+                break;
+            case "scissors":
+                win = "rock";
+                break;
+        }
+
+        if (computerChoice == win) {
+            roundMessage += "YOU LOSE!";
+        } else {
+            roundMessage += "YOU WIN!";
+        }
+    }
+
+    console.log(roundMessage);
+}
+
+
+document.body.addEventListener("click", (event) => {
+    if (event.target.classList.contains("choice")) {
+        playRound(event.target.id);
+    }
+})
