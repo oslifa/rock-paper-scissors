@@ -1,0 +1,121 @@
+html {
+    height: 100%;    
+}
+
+body * {
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+    height: 100%;
+    background-image: linear-gradient(to bottom, #0ae, #dfd);
+    text-align: center;
+}
+
+#content {
+    display: flex;
+    flex: 0 1 auto;
+    width: 800px;
+    padding: 12px;
+    flex-direction: column;
+}
+
+#choices {
+    display: flex;
+    padding: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.choice {
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 60px;
+    color: #fff;
+    text-shadow: 2px 0px #000, -2px 0px #000, 0px 2px #000, 0px -2px #000;
+    cursor: pointer;
+}
+
+#rock {
+    border: 4px solid #2b222b;
+    background-color: #554455;
+    background-image: linear-gradient(to bottom, #554455, #443344);
+}
+
+#rock:hover, #paper:hover, #scissors:hover {
+    background-image: none;
+    border: 4px solid #000;
+    background-color: #fff;
+    color: #000;
+    text-shadow: none;
+    scale: 1.05;
+    transition: 0.3s;
+}
+
+#paper {
+    border: 4px solid #6f6655;
+    background-color: #ddddbb;
+    background-image: linear-gradient(to bottom, #ddddbb, #ddccaa);
+}
+
+#scissors {
+    border: 4px solid #5e6666;
+    background-image: linear-gradient(to bottom left, #ffffff, #bbcccc, #bbcccc);
+}
+
+#rounds {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.roundDisplay {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    color: red;
+    border: 2px solid #000000;
+    border-radius: 20px;
+}
+
+img {
+    width: 80px;
+    height: 80px;
+}
+
+#gameInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#gameInfo > * {
+    flex: 1 1 0;
+}
+
+#results {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 4px solid #000;
+    border-radius: 12px;
+    text-align: center;
+    color: #000;
+}
+
+#results h1, #humanScoreDisplay, #computerScoreDisplay {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1 {
+    margin: 0px;
+    color: #fff;
+    font-size: 48px;
+    text-shadow: 2px 0px #000, -2px 0px #000, 0px 2px #000, 0px -2px #000;
+}
+

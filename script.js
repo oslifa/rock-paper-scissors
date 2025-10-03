@@ -17,23 +17,25 @@ let round = 0;
 let isTieRound = false;
 let isGameOver = false;
 
-let results = document.querySelector("#results");
+let rounds = document.querySelector("#rounds");
 
 function playRound(humanChoice) {
     if (isTieRound) {
-        let tieContainer = document.querySelector(`#round${round}`);
-        results.removeChild(tieContainer);
+        let tieRoundDisplay = document.querySelector(`#round${round}`);
+        rounds.removeChild(tieRoundDisplay);
     } else {
         round++;
     }
 
     if (isGameOver) {
         isGameOver = false;
-        results.innerHTML = "";
+        rounds.innerHTML = "";
     }
     
     let computerChoice = getComputerChoice();
-    let roundMessage = `ROUND ${round}: ${humanChoice.toUpperCase()} VS. ${computerChoice.toUpperCase()}! `;
+    let roundMessage = `ROUND ${round}:
+        ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)} VS.
+        ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}! `;
     let win;
     isTieRound = false;
 
@@ -62,19 +64,23 @@ function playRound(humanChoice) {
         }
     }
 
-    const roundDisplay = document.createElement("p");
-    roundDisplay.textContent = `${roundMessage}`;
+    const roundMessageDisplay = document.createElement("p");
+    roundMessageDisplay.textContent = `${roundMessage}`;
 
-    let scoreMessage = `PLAYER: ${humanScore} PTS. CPU: ${computerScore} PTS.`;
+    let scoreMessage = `HUMAN: ${humanScore} PTS. CPU: ${computerScore} PTS.`;
     const scoreDisplay = document.createElement("p");
     scoreDisplay.textContent = `${scoreMessage}`;
 
+    const humanScoreDisplay = document.querySelector("#humanScoreDisplay");
+    humanScoreDisplay.textContent = `${humanScore}`;
+
+    const computerScoreDisplay = document.querySelector("#computerScoreDisplay");
+    computerScoreDisplay.textContent = `${computerScore}`;
+
     let gameMessage;
 
-    if (humanScore == 5 || computerScore == 5) {
-        if (humanScore == computerScore) {
-            gameMessage = ` IT'S A TIE!`;
-        } else if (humanScore > computerScore) {
+    if (humanScore == 3 || computerScore == 3) {
+        if (humanScore > computerScore) {
             gameMessage = ` GAME OVER! YOU WIN!`;
         } else {
             gameMessage = ` GAME OVER! YOU LOSE!`;
@@ -86,17 +92,30 @@ function playRound(humanChoice) {
         isGameOver = true;
     }
 
-    const gameDisplay = document.createElement("p");
-    gameDisplay.textContent = gameMessage;
+    const gameMessageDisplay = document.querySelector("#gameMessageDisplay");
+    gameMessageDisplay.textContent = gameMessage;
+    
+    const humanChoiceImg = document.createElement("img");
+    humanChoiceImg.src = `${humanChoice}.png`
 
-    let container = document.createElement("div");
-    container.id = `round${round}`;
+    const computerChoiceImg = document.createElement("img");
+    computerChoiceImg.src = `${computerChoice}.png`
+
+    const roundInfo = document.createElement("div");
+    roundInfo.id = "#roundInfo";
+
+    roundInfo.appendChild(roundMessageDisplay);
+    roundInfo.appendChild(scoreDisplay);
     
-    container.appendChild(roundDisplay);
-    container.appendChild(scoreDisplay);
-    container.appendChild(gameDisplay);
-    
-    results.appendChild(container);
+    const roundDisplay = document.createElement("div");
+    roundDisplay.id = `round${round}`;
+    roundDisplay.classList.add("roundDisplay");
+
+    roundDisplay.appendChild(humanChoiceImg);
+    roundDisplay.appendChild(roundInfo);
+    roundDisplay.appendChild(computerChoiceImg);
+
+    rounds.appendChild(roundDisplay);
 }
 
 document.body.addEventListener("click", (event) => {

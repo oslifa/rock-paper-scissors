@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
-    <div id="choices">
-        <button id="rock" class="choice">Rock!</button>
-        <button id="paper" class="choice">Paper!</button>
-        <button id="scissors" class="choice">Scissors!</button>
-    </div>
-    <div id="results"></div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock Paper Scissors</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <div id="content">
+            <div id="choices">
+                <button id="rock" class="choice">Rock!</button>
+                <button id="paper" class="choice">Paper!</button>
+                <button id="scissors" class="choice">Scissors!</button>
+            </div>
+            <div id="rounds"></div>
+            <div id="gameInfo">
+                <h1 id="human">Human </h1>
+                <div id="results">
+                    <h1><span id="humanScoreDisplay"></span> : <span id="computerScoreDisplay"></span></h1>
+                </div>
+                <h1 id="computer">Computer</h1>
+            </div>
+            <h1 id="gameMessageDisplay"> </h1>
+        </div>
+    </body>
 </html>
