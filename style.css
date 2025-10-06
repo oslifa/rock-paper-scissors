@@ -3,7 +3,12 @@ html {
 }
 
 body * {
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    margin: 0px;
+    color: #ffffff;
 }
 
 body {
@@ -11,7 +16,9 @@ body {
     justify-content: center;
     margin: 0px;
     height: 100%;
-    background-image: linear-gradient(to bottom, #0ae, #dfd);
+    background-image: linear-gradient(to bottom, #0066ff, #ddffdd);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     text-align: center;
 }
 
@@ -21,11 +28,11 @@ body {
     width: 800px;
     padding: 12px;
     flex-direction: column;
+    gap: 12px
 }
 
 #choices {
     display: flex;
-    padding: 12px;
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
@@ -36,86 +43,87 @@ body {
     border-radius: 12px;
     font-size: 60px;
     color: #fff;
-    text-shadow: 2px 0px #000, -2px 0px #000, 0px 2px #000, 0px -2px #000;
+    text-shadow: 2px 0px #000000, -2px 0px #000000, 0px 2px #000000, 0px -2px #000000;
     cursor: pointer;
 }
 
 #rock {
-    border: 4px solid #2b222b;
+    border: none;
     background-color: #554455;
     background-image: linear-gradient(to bottom, #554455, #443344);
 }
 
-#rock:hover, #paper:hover, #scissors:hover {
-    background-image: none;
-    border: 4px solid #000;
-    background-color: #fff;
-    color: #000;
-    text-shadow: none;
-    scale: 1.05;
-    transition: 0.3s;
-}
-
 #paper {
-    border: 4px solid #6f6655;
+    border: none;
     background-color: #ddddbb;
     background-image: linear-gradient(to bottom, #ddddbb, #ddccaa);
 }
 
 #scissors {
-    border: 4px solid #5e6666;
+    border: none;
+    background-color: #bbcccc;
     background-image: linear-gradient(to bottom left, #ffffff, #bbcccc, #bbcccc);
+}
+
+#rock:hover, #paper:hover, #scissors:hover {
+    background-image: none;
+    border: none;
+    background-color: #ffffff;
+    color: #000000;
+    text-shadow: none;
+    scale: 1.15;
+    transition: 0.3s;
 }
 
 #rounds {
     flex: 1 1 0;
     display: flex;
     flex-direction: column;
-    gap: 12px;
     padding: 12px;
-    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.25);
 }
 
 .roundDisplay {
     display: flex;
     justify-content: space-between;
-    background-color: #fff;
-    color: red;
-    border: 2px solid #000000;
-    border-radius: 20px;
+    align-items: center;
+    padding: 10px;
+}
+
+.roundMessageDisplay {
+    padding: 12px;
+    color: #ffffff;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
 }
 
 #gameInfo {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 24px;
 }
 
-#gameInfo > * {
-    flex: 1 1 0;
+#human, #computer {
+    flex: 2;
+    font-size: 35px;
+    text-shadow: 2px 0px #000000, -2px 0px #000000, 0px 2px #000000, 0px -2px #000000;
 }
 
-#results {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 4px solid #000;
+#scoreDisplay {
+    flex: 5;
+    padding: 20px;
     border-radius: 12px;
+    background-image: linear-gradient(to bottom, #002222, #003333);
     text-align: center;
-    color: #000;
+    font-size: 36px;
+    color: #ffffff;
 }
-
-#results h1, #humanScoreDisplay, #computerScoreDisplay {
-    font-family: 'Courier New', Courier, monospace;
-}
-
-h1 {
-    margin: 0px;
-    color: #fff;
-    font-size: 48px;
-    text-shadow: 2px 0px #000, -2px 0px #000, 0px 2px #000, 0px -2px #000;
-}
-

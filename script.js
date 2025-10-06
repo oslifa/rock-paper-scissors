@@ -33,14 +33,15 @@ function playRound(humanChoice) {
     }
     
     let computerChoice = getComputerChoice();
-    let roundMessage = `ROUND ${round}:
-        ${humanChoice[0].toUpperCase()}${humanChoice.slice(1)} VS.
-        ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}! `;
+    let roundMessage = `${humanChoice[0].toUpperCase()}${humanChoice.slice(1)}
+        VS. ${computerChoice[0].toUpperCase()}${computerChoice.slice(1)}! `;
     let win;
     isTieRound = false;
+    let humanColour;
+    let computerColour;
 
     if (humanChoice == computerChoice) {
-        roundMessage += "IT'S A TIE! REDO!"
+        roundMessage += "It's a tie! Redo!"
         isTieRound = true;
     } else {
         switch (humanChoice) {
@@ -56,63 +57,60 @@ function playRound(humanChoice) {
         }
 
         if (computerChoice == win) {
-            roundMessage += "YOU LOSE!";
+            roundMessage += "You lose!";
             computerScore++;
+            humanColour = "#dd0000";
+            computerColour = "#00aa00";
         } else {
-            roundMessage += "YOU WIN!";
+            roundMessage += "You win!";
             humanScore++;
+            humanColour = "#00aa00";
+            computerColour = "#dd0000";
         }
     }
 
-    const roundMessageDisplay = document.createElement("p");
+    const roundMessageDisplay = document.createElement("div");
+    roundMessageDisplay.classList.add("roundMessageDisplay");
     roundMessageDisplay.textContent = `${roundMessage}`;
 
-    let scoreMessage = `HUMAN: ${humanScore} PTS. CPU: ${computerScore} PTS.`;
-    const scoreDisplay = document.createElement("p");
-    scoreDisplay.textContent = `${scoreMessage}`;
+    const scoreDisplay = document.querySelector("#scoreDisplay");
+    scoreDisplay.textContent = `${humanScore} : ${computerScore}`;
 
-    const humanScoreDisplay = document.querySelector("#humanScoreDisplay");
-    humanScoreDisplay.textContent = `${humanScore}`;
+    let gameMessage = "&nbsp;";
 
-    const computerScoreDisplay = document.querySelector("#computerScoreDisplay");
-    computerScoreDisplay.textContent = `${computerScore}`;
-
-    let gameMessage;
-
-    if (humanScore == 3 || computerScore == 3) {
+    if (humanScore == 4 || computerScore == 4) {
         if (humanScore > computerScore) {
-            gameMessage = ` GAME OVER! YOU WIN!`;
+            gameMessage = `GAME OVER! You win!`;
         } else {
-            gameMessage = ` GAME OVER! YOU LOSE!`;
+            gameMessage = `GAME OVER! You lose!`;
         }
+
+        scoreDisplay.textContent = gameMessage;
 
         round = 0;
         humanScore = 0;
         computerScore = 0;
         isGameOver = true;
     }
-
-    const gameMessageDisplay = document.querySelector("#gameMessageDisplay");
-    gameMessageDisplay.textContent = gameMessage;
     
     const humanChoiceImg = document.createElement("img");
-    humanChoiceImg.src = `${humanChoice}.png`
+    humanChoiceImg.src = `${humanChoice}.png`;
+    humanChoiceImg.style.backgroundColor = humanColour;
 
     const computerChoiceImg = document.createElement("img");
-    computerChoiceImg.src = `${computerChoice}.png`
-
-    const roundInfo = document.createElement("div");
-    roundInfo.id = "#roundInfo";
-
-    roundInfo.appendChild(roundMessageDisplay);
-    roundInfo.appendChild(scoreDisplay);
+    computerChoiceImg.src = `${computerChoice}.png`;
+    computerChoiceImg.style.backgroundColor = computerColour;
     
     const roundDisplay = document.createElement("div");
     roundDisplay.id = `round${round}`;
     roundDisplay.classList.add("roundDisplay");
 
+    if (round != 1) {
+        roundDisplay.style.borderTop = "2px solid #ffffff";
+    }
+
     roundDisplay.appendChild(humanChoiceImg);
-    roundDisplay.appendChild(roundInfo);
+    roundDisplay.appendChild(roundMessageDisplay);
     roundDisplay.appendChild(computerChoiceImg);
 
     rounds.appendChild(roundDisplay);
